@@ -16,5 +16,5 @@ install:
   - tsc
 
 script:
-  - ./node_modules/karma/bin/karma start --single-run=true
+  - ./node_modules/karma/bin/karma start --single-run=true --browsers Firefox
 
