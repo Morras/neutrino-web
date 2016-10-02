@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"module": "system",
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"outDir": "build/",
+		"rootDir": "."
+	},
+	"exclude": [
+		"node_modules",
+		"build"	
+	]
+}

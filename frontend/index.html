@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Neutrino game</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="state">
+
+    </div>
+    <table id="board">
+        <tr class="boardRow">
+            <td class="square" id="0-0">
+                <div class="piece player1"></div>
+            </td>
+            <td class="square" id="1-0">
+                <div class="piece player1"></div>
+            </td>
+            <td class="square" id="2-0">
+                <div class="piece player1"></div>
+            </td>
+            <td class="square" id="3-0">
+                <div class="piece player1"></div>
+            </td>
+            <td class="square" id="4-0">
+                <div class="piece player1"></div>
+            </td>
+        </tr>
+        <tr class="boardRow">
+            <td class="square" id="0-1"> </td>
+            <td class="square" id="1-1"> </td>
+            <td class="square" id="2-1"> </td>
+            <td class="square" id="3-1"> </td>
+            <td class="square" id="4-1"> </td>
+        </tr>
+        <tr class="boardRow">
+            <td class="square" id="0-2"> </td>
+            <td class="square" id="1-2"> </td>
+            <td class="square" id="2-2">
+                <div class="piece player0"></div>
+            </td>
+            <td class="square" id="3-2"> </td>
+            <td class="square" id="4-2"> </td>
+        </tr>
+        <tr class="boardRow">
+            <td class="square" id="0-3"> </td>
+            <td class="square" id="1-3"> </td>
+            <td class="square" id="2-3"> </td>
+            <td class="square" id="3-3"> </td>
+            <td class="square" id="4-3"> </td>
+        </tr>
+        <tr class="boardRow">
+            <td class="square" id="0-4">
+                <div class="piece player2"></div>
+            </td>
+            <td class="square" id="1-4">
+                <div class="piece player2"></div>
+            </td>
+            <td class="square" id="2-4">
+                <div class="piece player2"></div>
+            </td>
+            <td class="square" id="3-4">
+                <div class="piece player2"></div>
+            </td>
+            <td class="square" id="4-4">
+                <div class="piece player2"></div>
+            </td>
+        </tr>
+    </table>
+
+    <div id="errorMessage">
+
+    </div>
+
+    <button id="resetButton">New game</button>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.37/system-csp-production.js" integrity="sha256-2rOHM6IAraqUeY2tRXsi8uCKuWZ1Bj/biJsQgh9dSLc="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="system.conf.js"> </script>
+    <script>
+        SystemJS.import('board.js');
+    </script>
+</body>
+
+
+</html>
