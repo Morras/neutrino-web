@@ -10,7 +10,11 @@ body{
     margin: 0 auto;
 }
 
-.td{
+.centered-text {
+    text-align: center;
+}
+
+td{
     padding: 0px;
 }
 .square{

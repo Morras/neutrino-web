@@ -9,6 +9,19 @@ namespace board {
         player2 = 2,
     }
 
+    function pieceTypeFromPiece(piece: n.Piece): PieceType {
+        switch (piece) {
+            case n.Piece.Neutrino:
+                return PieceType.neutrino;
+            case n.Piece.Player1:
+                return PieceType.player1;
+            case n.Piece.Player2:
+                return PieceType.player2;
+            default:
+                -1;
+        }
+    }
+
     let game: n.Game;
 
     class Coordinates {
@@ -19,6 +32,10 @@ namespace board {
             return new Coordinates(parseInt(coordinates[0]), parseInt(coordinates[1]));
         }
 
+        static elementFromCoordinates(c: Coordinates) {
+            return document.getElementById(c.x + "-" + c.y);
+        }
+
         toString(): string {
             return "(" + this.x + ", " + this.y + ")";
         }
@@ -27,9 +44,24 @@ namespace board {
     let originSquare: HTMLElement;
     let origin = new Coordinates(-1, -1);
 
+    function redrawBoard(game: n.Game) {
+        for (let x = 0; x < n.Columns; x++) {
+            for (let y = 0; y < n.Columns; y++) {
+                let boardSquare = Coordinates.elementFromCoordinates(new Coordinates(x, y));
+                boardSquare.innerHTML = "";
+                let piece = game.getPieceAt(x, y);
+                if (piece !== n.Piece.None) {
+                    let pieceType = pieceTypeFromPiece(piece);
+                    let pieceElement = createPiece(pieceType)
+                    boardSquare.appendChild(pieceElement);
+                }
+            }
+        }
+    }
+
     export function setupBoardInteractions() {
-        console.log("BAR");
         game = new n.Game(n.neutrinoMoveDecider, n.neutrinoNextStateDecider);
+        redrawBoard(game);
         updateState();
 
         interact("#board")
@@ -66,13 +98,12 @@ namespace board {
         const movedPiece = event.relatedTarget;
 
         const targetCoordinates = Coordinates.fromSquareElement(targetSquare);
-        console.log("moving from: " + origin + " to " + targetCoordinates);
 
         let move = new n.Move(origin.x, origin.y, targetCoordinates.x, targetCoordinates.y);
         let moveResult = game.makeMove(move);
         const pieceType = getPieceTypeFromElement(movedPiece);
         movedPiece.parentElement.removeChild(movedPiece);
-        if ( moveResult.success ) {
+        if (moveResult.success) {
             targetSquare.appendChild(createPiece(pieceType));
             clearErrorMessage();
         } else {
@@ -131,6 +162,7 @@ namespace board {
         newPiece.classList.add("player" + piece);
         return newPiece;
     }
+
     function onStart(event: Interact.InteractEvent) {
         originSquare = event.target.parentElement;
         origin = Coordinates.fromSquareElement(originSquare);
