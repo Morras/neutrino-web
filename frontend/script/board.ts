@@ -63,6 +63,7 @@ namespace board {
         game = new n.Game(n.neutrinoMoveDecider, n.neutrinoNextStateDecider);
         redrawBoard(game);
         updateState();
+        displayErrorMessage("");
 
         interact("#board")
             .dropzone({
