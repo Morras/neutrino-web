@@ -13,10 +13,8 @@ before_install:
   - typings install
 
 install:
-  - cd frontend
   - tsc
 
 script:
-  - cd frontend
   - ./node_modules/karma/bin/karma start --single-run=true
 
