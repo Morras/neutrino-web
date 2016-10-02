@@ -56,8 +56,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    //TODO some probzems with firefox, fix that later    browsers: ['Chrome', 'Firefox'], the problem might very well be that I do not have firefox installed
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
 
 
     // Continuous Integration mode

@@ -18,6 +18,7 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
-    "karma-systemjs": "^0.14.0"
+    "karma-systemjs": "^0.14.0",
+    "traceur": "0.0.111"
   }
 }
