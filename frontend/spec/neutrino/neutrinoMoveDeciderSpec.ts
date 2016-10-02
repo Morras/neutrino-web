@@ -138,6 +138,22 @@ describe("NeutrinoMoveDecider", () => {
         expect(moveResult.errorMessage).toBe(ErrorMessages.homeRowRebuild);
     });
 
+    it("Should be possible for player one to move within their own home row even if they have four pieces there", () => {
+        let board = createEmptyBoard();
+        board[0][0] = Piece.Player1;
+        board[2][0] = Piece.Player1;
+        board[3][0] = Piece.Player1;
+        board[4][0] = Piece.Player1;
+        let state = State.PlayerOneMovePiece;
+        let game = new Game(neutrinoMoveDecider, stateDeciderMock, board, state);
+
+        let move = new Move(0, 0, 1, 0);
+        let moveResult = neutrinoMoveDecider(move, game);
+
+        expect(moveResult.success).toBe(true);
+        expect(moveResult.errorMessage).toBeUndefined();
+    });
+
     it("Should be possible for player one to fill up the home row if one of the pieces are player twos", () => {
         let board = createEmptyBoard();
         board[0][0] = Piece.Player1;
@@ -149,6 +165,22 @@ describe("NeutrinoMoveDecider", () => {
         let game = new Game(neutrinoMoveDecider, stateDeciderMock, board, state);
 
         let move = new Move(4, 4, 4, 0);
+        let moveResult = neutrinoMoveDecider(move, game);
+
+        expect(moveResult.success).toBe(true);
+        expect(moveResult.errorMessage).toBeUndefined();
+    });
+
+    it("Should be possible for player two to move within their own home row even if they have four pieces there", () => {
+        let board = createEmptyBoard();
+        board[0][4] = Piece.Player2;
+        board[1][4] = Piece.Player2;
+        board[2][4] = Piece.Player2;
+        board[4][4] = Piece.Player2;
+        let state = State.PlayerTwoMovePiece;
+        let game = new Game(neutrinoMoveDecider, stateDeciderMock, board, state);
+
+        let move = new Move(2, 4, 3, 4);
         let moveResult = neutrinoMoveDecider(move, game);
 
         expect(moveResult.success).toBe(true);

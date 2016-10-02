@@ -88,12 +88,12 @@ function moveIsAStraightLine(move: Move): boolean {
 
 function moveRecreatesHomeRow(move: Move, game: Game) {
     let piece = game.getPieceAt(move.fromX, move.fromY);
-    if (move.toY === 0 && piece === Piece.Player1) {
+    if (move.toY === PlayerOneHomeRow && move.fromY !== PlayerOneHomeRow && piece === Piece.Player1) {
         let ownPiecesOnHomeRow = getPiecesOfTypeOnRow(Piece.Player1, PlayerOneHomeRow, game);
-        if (ownPiecesOnHomeRow === 4) {
+        if (ownPiecesOnHomeRow === 4 ) {
             return true;
         }
-    } else if (move.toY === 4 && piece === Piece.Player2) {
+    } else if (move.toY === PlayerTwoHomeRow && move.fromY !== PlayerTwoHomeRow && piece === Piece.Player2) {
         let ownPiecesOnHomeRow = getPiecesOfTypeOnRow(Piece.Player2, PlayerTwoHomeRow, game);
         if (ownPiecesOnHomeRow === 4) {
             return true;
