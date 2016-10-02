@@ -6,7 +6,7 @@ branches:
   - master
   - travis
 
-before install:
+before_install:
   - cd frontend
   - npm install
   - npm install -g tsc typings
