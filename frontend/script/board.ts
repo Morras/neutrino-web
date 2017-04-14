@@ -1,5 +1,5 @@
-import interact from "interact.js";
 import * as n from "./neutrino/neutrino";
+import interact from "interact.js";
 
 namespace board {
 
@@ -18,7 +18,7 @@ namespace board {
             case n.Piece.Player2:
                 return PieceType.player2;
             default:
-                -1;
+                return -1;
         }
     }
 
@@ -154,7 +154,8 @@ namespace board {
                 return parseInt(pt);
             }
         }
-        // todo we might exit this without an explicit return
+        // todo we might exit this without an explicit return, same thing happens in function around line 12 where we also return -1
+        return -1;
     }
 
     function createPiece(piece: PieceType): HTMLElement {

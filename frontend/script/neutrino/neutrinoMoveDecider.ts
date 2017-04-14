@@ -99,6 +99,7 @@ function moveRecreatesHomeRow(move: Move, game: Game) {
             return true;
         }
     }
+    return false;
 }
 
 function stepFromMove(move: Move): { xStep: number, yStep: number, numberOfSteps: number } {

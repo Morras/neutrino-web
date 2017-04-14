@@ -1,4 +1,4 @@
-import {Game, Piece, Move, State, neutrinoNextStateDecider} from "../../script/neutrino/neutrino";
+import {Game, Piece, State, neutrinoNextStateDecider} from "../../script/neutrino/neutrino";
 
 describe("neutrinoNextStateDecider", () => {
 
@@ -12,7 +12,7 @@ describe("neutrinoNextStateDecider", () => {
         return board;
     }
 
-    let mockMoveLegalityDecider = function (m: Move, g: Game) {
+    let mockMoveLegalityDecider = function () {
         return { success: true };
     };
 

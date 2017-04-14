@@ -2,11 +2,18 @@
 	"compilerOptions": {
 		"module": "system",
 		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,
+		"pretty": true,
 		"outDir": "build/",
-		"rootDir": "."
+		"rootDir": ".",
+		"alwaysStrict": true,
+		"forceConsistentCasingInFileNames": true
 	},
 	"exclude": [
 		"node_modules",

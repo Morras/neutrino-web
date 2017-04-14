@@ -3,11 +3,14 @@ import {Game, Piece, Move, State} from "../../script/neutrino/neutrino";
 
 describe("Game", () => {
 
-    let trueMoveLegalityDecider = function (m: Move, g: Game) {
+    /**
+     * Setup of mocks to be used later
+     */
+    let trueMoveLegalityDecider = function () {
         return { success: true };
     };
 
-    let falseMoveLegalityDecider = function (m: Move, g: Game) {
+    let falseMoveLegalityDecider = function () {
         return { success: false, errorMessage: "Descriptive move error message" };
     };
 
@@ -15,13 +18,16 @@ describe("Game", () => {
         return g.state;
     };
 
-    let changeStateDecider = function (g: Game) {
+    let changeStateDecider = function () {
         return State.PlayerTwoMoveNeutrino;
     };
 
+    /**
+     * Tests
+     */
+
     it("Should be possible to create a new game with the default layout", () => {
         let game = new Game(trueMoveLegalityDecider, identityStateDecider);
-
         // Check player one home row
         expect(game.getPieceAt(0, 0)).toBe(Piece.Player1);
         expect(game.getPieceAt(1, 0)).toBe(Piece.Player1);
@@ -118,7 +124,7 @@ describe("Game", () => {
         let originalState = game.state;
         let move = new Move(2, 2, 2, 4);
 
-        let moveResult = game.makeMove(move);
+        game.makeMove(move);
 
         expect(game.state).not.toBe(originalState);
         expect(game.state).toBe(State.PlayerTwoMoveNeutrino);
@@ -129,13 +135,13 @@ describe("Game", () => {
         let originalState = game.state;
         let move = new Move(2, 2, 2, 4);
 
-        let moveResult = game.makeMove(move);
+        game.makeMove(move);
 
         expect(game.state).not.toBe(State.PlayerTwoMoveNeutrino);
         expect(game.state).toBe(originalState);
     });
 
-    // Getting into winning states, done with unit testing of the state decider
+    // Getting into winning states, is done with unit testing of the state decider
 
     // In the end do some end-to-end tests, but perhaps with the gui?
 });
