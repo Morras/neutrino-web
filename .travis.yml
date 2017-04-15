@@ -9,8 +9,7 @@ branches:
 before_install:
   - cd frontend
   - npm install
-  - npm install -g typescript typings
-  - typings install
+  - npm install -g typescript
 
 install:
   - tsc
