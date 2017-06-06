@@ -21,3 +21,12 @@ before_script:
 script:
   - ./node_modules/karma/bin/karma start --single-run=true --browsers Firefox
 
+before_deploy:
+  - mkdir deploy
+  - cp -r build deploy/
+  - cp -r static deploy/
+  - cp *.html deploy/
+  - cp system.conf.js deploy/
+  - ls -al deploy
+  
+# deploy upload deploy to S3. To do this, first test locally using cli  
