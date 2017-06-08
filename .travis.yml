@@ -27,6 +27,16 @@ before_deploy:
   - cp -r static deploy/
   - cp *.html deploy/
   - cp system.conf.js deploy/
-  - ls -al deploy
-  
-# deploy upload deploy to S3. To do this, first test locally using cli  
+  - cp robots.txt deploy/
+  - echo Listing deployment
+  - ls -ral deploy
+
+deploy:
+  provider: s3
+  access_key_id: "AKIAJ47BBUUQA5ES2N5A"
+  secret_access_key: 
+    secure: "coRW+R3lKY4fCgfQ4ati76s/4r8yZ9JrT3Dogkw8rX+kp1IFm/mW/tO2+ZEZhSOX7oeWNdi3UsYkHC1daSDFK5VDDShRD25SJXITxNlTQ+IkzIsUuuBoOprsJPIRIwz69MFIzA6PIZgKaPtzVMZEe89BcgI0z16YQpiVlkEUUZsPNl1pzZZndlHzc72msDS1m4AHKnPfMXjGiPm40YQzLBozx//vZiXVtLz4XveLjKgeZ/xP+8XUmDFLwmMYrWeprpAMr64YFwdtPwU1skIfUX2D9ooRK5Py8jyvDuvkQOMv5JlWKB3jdcZV3azuSfshSqnu5s+MVmGR6YdRBeuTEWl86MCpuBuLJ2zcwP3/KO44DyFr0sLdok0C+7+3kvxkmcqcOB6kChyhMWoAs6UIjt6qqDPi1rLjZRs865WL2FYy6U01g0Rq24mPngpDYwlbXloa1eE2E8YzieGcc3sVZCjbjINfaEhrVChB6eAx2aRCfNk0iwZ8My2s9zYOi2WpitcBRrmdtRmWlpRsrjtIkBhUAcaUeOOomugonaJq/+Xvu1YMP2rA/svlvmiOvznnsUpo+euBU+jow+fdKg4HX+kvBN4cDAwdFLq5F3Vct2ui5naJ7X6DwydmRkAr0/Tj8ZwEobzfOIthqEa7uT4D3RpranJx7dk4yiqPM47ZXxo="
+  bucket: "site.neutrino.tildeslash.dk"
+  region: "eu-west-2"
+  local_dir: deploy
+  upload_dir: prod
