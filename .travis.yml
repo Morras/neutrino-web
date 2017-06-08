@@ -1,44 +1,35 @@
 language: node_js
-
-# safelist
 branches:
   only:
   - master
   - travis
-
 before_install:
-  - cd frontend
-  - npm install
-  - npm install -g typescript
-
+- cd frontend
+- npm install
+- npm install -g typescript
 install:
-  - tsc
-
+- tsc
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 script:
-  - ./node_modules/karma/bin/karma start --single-run=true --browsers Firefox
-
+- "./node_modules/karma/bin/karma start --single-run=true --browsers Firefox"
 before_deploy:
-  - mkdir deploy
-  - cp -r build deploy/
-  - cp -r static deploy/
-  - cp *.html deploy/
-  - cp system.conf.js deploy/
-  - cp robots.txt deploy/
-  - echo Listing deployment
-  - ls -ral deploy
-
+- mkdir deploy
+- cp -r build deploy/
+- cp -r static deploy/
+- cp *.html deploy/
+- cp system.conf.js deploy/
+- cp robots.txt deploy/
+- echo Listing deployment
+- ls -ral deploy
 deploy:
   provider: s3
-  access_key_id: "AKIAJ47BBUUQA5ES2N5A"
-  secret_access_key: 
-    secure: "coRW+R3lKY4fCgfQ4ati76s/4r8yZ9JrT3Dogkw8rX+kp1IFm/mW/tO2+ZEZhSOX7oeWNdi3UsYkHC1daSDFK5VDDShRD25SJXITxNlTQ+IkzIsUuuBoOprsJPIRIwz69MFIzA6PIZgKaPtzVMZEe89BcgI0z16YQpiVlkEUUZsPNl1pzZZndlHzc72msDS1m4AHKnPfMXjGiPm40YQzLBozx//vZiXVtLz4XveLjKgeZ/xP+8XUmDFLwmMYrWeprpAMr64YFwdtPwU1skIfUX2D9ooRK5Py8jyvDuvkQOMv5JlWKB3jdcZV3azuSfshSqnu5s+MVmGR6YdRBeuTEWl86MCpuBuLJ2zcwP3/KO44DyFr0sLdok0C+7+3kvxkmcqcOB6kChyhMWoAs6UIjt6qqDPi1rLjZRs865WL2FYy6U01g0Rq24mPngpDYwlbXloa1eE2E8YzieGcc3sVZCjbjINfaEhrVChB6eAx2aRCfNk0iwZ8My2s9zYOi2WpitcBRrmdtRmWlpRsrjtIkBhUAcaUeOOomugonaJq/+Xvu1YMP2rA/svlvmiOvznnsUpo+euBU+jow+fdKg4HX+kvBN4cDAwdFLq5F3Vct2ui5naJ7X6DwydmRkAr0/Tj8ZwEobzfOIthqEa7uT4D3RpranJx7dk4yiqPM47ZXxo="
-  bucket: "site.neutrino.tildeslash.dk"
-  region: "eu-west-2"
+  access_key_id: AKIAJ47BBUUQA5ES2N5A
+  secret_access_key:
+    secure: HcX3ugkXJ15zwv7qfZAj2RuB/kharPCJFZnAognajfEAmQdb1QE5Vh+P/KVlm/97ZrJ0P8W2nn8cCx9qZ/hoM0DgzkDoYQCrcnJ//tIeVuEF6i6WjUyzT2p6e0lnOJPO96JCrYlMRA9TwxQCnAuF1POSSeRnPDu48KYq0x2gEOCpIVPsfH2PjWOPPaQEF86ehGn+/ZI6ZeQh40nkdgVe7AyhlUlXl9c6tKmZi96rQenHdTIcO742FEX8N+5VC0FTyGhnQKDczDIMERQtdsJQCZRc5UvR5QhTgWiu3fFtUxrILRm4nSDyhJbpQ2vMyW1IctDc2bJ6c8irmdrvLglyXdekikj3C98mzunkhVpkpwWqzAwpG8TaaVd/MRxNa7z5m0v7N9P4KyCW+Rqe1dJiYZnIvF9d05eljmFRlH3Sdwsbe6jRBNqAlZ/4oyWKi0rz/nIUnu+TMvQADLjObLmlCj1XL7w3QVNO3dCn3pnw+4OaoCQMj/1vhtf+GRmBHWR1da8CrNlZAihxiGNa0rMAhklcVhTwC7Jn6+jDCSluEjYOHzyVpH3CBq523O1wQHKWJkYvUAxOoIAzroBAEzlJWJ5r2QbS3oSppuUzEGAb7ooOVsTMNnoEvgaRWH1XqHZngnb9zCv0xpbM8m4+zJsEuV6kOUBnpv1ex0XBxRyHtos=
+  bucket: site.neutrino.tildeslash.dk
+  region: eu-west-2
   local_dir: deploy
   upload_dir: prod
   skip_cleanup: true
-
