@@ -40,3 +40,5 @@ deploy:
   region: "eu-west-2"
   local_dir: deploy
   upload_dir: prod
+  skip_cleanup: true
+
