@@ -33,3 +33,5 @@ deploy:
   local_dir: deploy
   upload_dir: prod
   skip_cleanup: true
+  on:
+    branch: master
