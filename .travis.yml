@@ -28,10 +28,9 @@ deploy:
   access_key_id: AKIAJ47BBUUQA5ES2N5A
   secret_access_key:
     secure: HcX3ugkXJ15zwv7qfZAj2RuB/kharPCJFZnAognajfEAmQdb1QE5Vh+P/KVlm/97ZrJ0P8W2nn8cCx9qZ/hoM0DgzkDoYQCrcnJ//tIeVuEF6i6WjUyzT2p6e0lnOJPO96JCrYlMRA9TwxQCnAuF1POSSeRnPDu48KYq0x2gEOCpIVPsfH2PjWOPPaQEF86ehGn+/ZI6ZeQh40nkdgVe7AyhlUlXl9c6tKmZi96rQenHdTIcO742FEX8N+5VC0FTyGhnQKDczDIMERQtdsJQCZRc5UvR5QhTgWiu3fFtUxrILRm4nSDyhJbpQ2vMyW1IctDc2bJ6c8irmdrvLglyXdekikj3C98mzunkhVpkpwWqzAwpG8TaaVd/MRxNa7z5m0v7N9P4KyCW+Rqe1dJiYZnIvF9d05eljmFRlH3Sdwsbe6jRBNqAlZ/4oyWKi0rz/nIUnu+TMvQADLjObLmlCj1XL7w3QVNO3dCn3pnw+4OaoCQMj/1vhtf+GRmBHWR1da8CrNlZAihxiGNa0rMAhklcVhTwC7Jn6+jDCSluEjYOHzyVpH3CBq523O1wQHKWJkYvUAxOoIAzroBAEzlJWJ5r2QbS3oSppuUzEGAb7ooOVsTMNnoEvgaRWH1XqHZngnb9zCv0xpbM8m4+zJsEuV6kOUBnpv1ex0XBxRyHtos=
-  bucket: site.neutrino.tildeslash.dk
+  bucket: neutrino.tildeslash.dk
   region: eu-west-2
   local_dir: deploy
-  upload_dir: prod
   skip_cleanup: true
   on:
     branch: master
