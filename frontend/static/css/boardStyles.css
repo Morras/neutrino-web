@@ -8,6 +8,8 @@ body{
 
     display: table;
     margin: 0 auto;
+
+    background-color: #FDFDFF;
 }
 
 .centered-text {

@@ -11,7 +11,7 @@
     "@brand-info": "#5bc0de",
     "@brand-warning": "#f0ad4e",
     "@brand-danger": "#d9534f",
-    "@body-bg": "#fff",
+    "@body-bg": "#62929E",
     "@text-color": "@gray-dark",
     "@link-color": "@brand-primary",
     "@link-hover-color": "darken(@link-color, 15%)",
@@ -147,7 +147,7 @@
     "@navbar-padding-vertical": "((@navbar-height - @line-height-computed) / 2)",
     "@navbar-collapse-max-height": "340px",
     "@navbar-default-color": "#777",
-    "@navbar-default-bg": "#f8f8f8",
+    "@navbar-default-bg": "#393D3F",
     "@navbar-default-border": "darken(@navbar-default-bg, 6.5%)",
     "@navbar-default-link-color": "#777",
     "@navbar-default-link-hover-color": "#333",
@@ -163,7 +163,7 @@
     "@navbar-default-toggle-icon-bar-bg": "#888",
     "@navbar-default-toggle-border-color": "#ddd",
     "@navbar-inverse-color": "lighten(@gray-light, 15%)",
-    "@navbar-inverse-bg": "#222",
+    "@navbar-inverse-bg": "#393D3F",
     "@navbar-inverse-border": "darken(@navbar-inverse-bg, 10%)",
     "@navbar-inverse-link-color": "lighten(@gray-light, 15%)",
     "@navbar-inverse-link-hover-color": "#fff",
@@ -391,5 +391,5 @@
     "navbar.less"
   ],
   "js": [],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=c6e46871c44e90e1fddecdbd4d4ef044"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=8fc4a9f8e29764144e93b6a9e2e9aba2"
 }
