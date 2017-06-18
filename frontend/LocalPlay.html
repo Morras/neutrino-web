@@ -11,7 +11,8 @@
     <title>Neutrino game</title>
 
     <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap/bootstrap.min.css">
+    <!-- TODO add integrity check here -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 
     <link href="static/css/boardStyles.css" rel="stylesheet" />
 </head>
@@ -113,7 +114,13 @@
     <script>
         SystemJS.import('board.js');
     </script>
-
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+        <!-- TODO add integrity check here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 
