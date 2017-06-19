@@ -10,6 +10,7 @@ body{
     margin: 0 auto;
 
     background-color: #FDFDFF;
+    touch-action: none;
 }
 
 .centered-text {
