@@ -12,37 +12,81 @@
 
     <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
     <!-- TODO add integrity check here -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.2.0/firebaseui.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.2.0/firebaseui.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js" integrity="sha256-Aoj16fina1TqHL4PHoZ7swSL79hpfmgRSild8mste+U="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="system.conf.js"></script>
+
+    <script>
+        SystemJS.import("firebase-auth/setup-ui.js").then((m) => {
+            m.setupListeners(); 
+        });        
+    </script>
 </head>
 
 <body>
-    <div class="container no-padding">
-        <nav class="navbar navbar-inverse">
 
-            <div id="navbar" class="">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">About</a></li>
-                    <!--   <a class="menu-item" href="MyGames.html">My games</a> -->
-                    <li><a href="LocalPlay.html">Local play</a></li>
-                    <!--   <a class="menu-item" href="OnlinePlay.html">Online play</a>
+    <div class="container">
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+                    <a class="navbar-brand" href="#">Neutrino</a>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">About</a></li>
+                        <!--   <a class="menu-item" href="MyGames.html">My games</a> -->
+                        <li><a href="LocalPlay.html">Local play</a></li>
+                        <!--   <a class="menu-item" href="OnlinePlay.html">Online play</a>
             <a class="menu-item" href="Scoreboard.html">Scoreboard</a>
             <a class="menu-item" href="Settings.html">Settings</a> -->
-                </ul>
 
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a id="user-signin" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign in <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div id="firebaseui-auth-container"></div> <!-- This is not perfect if an error occurs or it takes a while to log in as that is hidden -->
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="hidden" id="user-signout" href="#">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-    </div>
-    </nav>
+        </nav>
 
-    <div class="container main-content">
-        Neutrino is a board game I first discovered at the student society TÅGEKAMMERET at Aarhus University.
-        <p>
-            The game used to be played in an empty beer crate with each players pieces being distinguished by the different beer brands
-            (canonically Ceres Top and Tuborg), and for the neutrino a Cocio bottle was usually used.
-        </p>
-        <p>
-            Initially this online version of Neutrino is a case study for me to have something concrete to implement on top of cloud
-            technologies, but who knows what might happen if someone finds out it is a fun way to beat their friends.
-        </p>
+        <div class="jumbotron main-content">
+            <p>
+                Neutrino is a board game I first discovered at the student society TÅGEKAMMERET at Aarhus University.
+            </p>
+            <p>
+                The game used to be played in an empty beer crate with each players pieces being distinguished by the different beer brands
+                (canonically Ceres Top and Tuborg), and for the neutrino a Cocio bottle was usually used.
+            </p>
+            <p>
+                Initially this online version of Neutrino is a case study for me to have something concrete to implement on top of cloud
+                technologies, but who knows what might happen if someone finds out it is a fun way to beat their friends.
+            </p>
+
+        </div>
 
     </div>
 
@@ -52,11 +96,11 @@
 
     </script>
 
-    
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-        <!-- TODO add integrity check here -->
+    <!-- TODO add integrity check here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

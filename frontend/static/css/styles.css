@@ -1,6 +1,6 @@
 
 body {
-  padding-top: 50px;
+  padding-top: 20px;
   background-color: #62929E !important;
 }
 
@@ -13,13 +13,11 @@ body {
 }
 
 /* Bootstrap overloads */
-
-.navbar-inverse {
+.navbar-inverse, .dropdown-menu {
      background-color: #393D3F !important;
      border-color: #393D3F !important;
 }
 
-/* Makes the nav bar behave reasonable on mobiles */
-.navbar-nav>li, .navbar-nav {
-  float: left !important;
+.jumbotron {
+    background-color: #C6C5B9 !important;
 }
