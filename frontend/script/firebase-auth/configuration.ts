@@ -14,7 +14,7 @@ export function initialize() {
     firebase.initializeApp(config);
 }
 
-var ui : any; //TODO remove any
+let ui: firebaseui.auth.AuthUI;
 
 export function authUI() {
     if ( ui == null ) {

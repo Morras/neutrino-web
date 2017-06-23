@@ -1,4 +1,5 @@
 import * as config from "firebase-auth/configuration";
+import User from "firebase-auth/user";
 
 function setLoginWidget() {
     config.initialize();
@@ -29,35 +30,27 @@ function setLogoutLink() {
     });
 }
 
+function toggleUserSigninSignoutLink(userSignedIn: boolean) {
+    if (userSignedIn) {
+        document.getElementById("user-signout").classList.remove("hidden");
+        document.getElementById("user-signin").classList.add("hidden");
+    } else {
+        document.getElementById("user-signout").classList.add("hidden");
+        document.getElementById("user-signin").classList.remove("hidden");
+    }
+}
+
 function userAuthListener() {
     config.initialize();
 
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
         console.log("auth state change")
         if (user) {
-            console.log("user");
-            document.getElementById("user-signout").classList.remove("hidden");
-            document.getElementById("user-signin").classList.add("hidden");
-            // User is signed in.
-            var displayName = user.displayName;
-            var uid = user.uid;
-            window.user = {
-                displayName: displayName,
-                uid: uid
-            }; // TODO store the entire user object to be able to get a fresh token
-            user.getIdToken().then((accessToken) => {
-                window.user = {
-                    displayName: displayName,
-                    uid: uid,
-                    accessToken: accessToken,
-                };
-            }, null); //TODO what on error? probably just log out
+            toggleUserSigninSignoutLink(true);
+            User.setCurrentUser(user);
         } else {
-            document.getElementById("user-signout").classList.add("hidden");
-            document.getElementById("user-signin").classList.remove("hidden");
-            console.log("no user");
-            window.user = null;
-            // What else to do when the user is not logged in?
+            toggleUserSigninSignoutLink(false);
+            User.setCurrentUser(null);
         }
     }, function (error) {
         console.log(error);

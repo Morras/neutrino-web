@@ -1,6 +1,6 @@
-declare module "firebaseui" {
+declare namespace firebaseui {
 
-  import firebase from 'firebase';
+  // import firebase from 'firebase';
 
   interface IConfig {
     callbacks?: ICallbacks;
@@ -29,4 +29,8 @@ declare module "firebaseui" {
       start(containerCSSselector: string, config: IConfig): any;
     }
   }
+}
+
+declare module "firebaseui" {
+    export = firebaseui;
 }
