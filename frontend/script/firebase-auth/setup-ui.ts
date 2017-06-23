@@ -1,5 +1,5 @@
-import * as config from "firebase-auth/configuration";
-import User from "firebase-auth/user";
+import * as config from "./configuration";
+import User from "./user";
 
 function setLoginWidget() {
     config.initialize();
