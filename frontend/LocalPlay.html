@@ -23,8 +23,9 @@
     <script type="text/javascript" src="system.conf.js"></script>
 
     <script>
-        // FirebaseUI config.
-        SystemJS.import("firebase-auth/login-widget.js");;
+        SystemJS.import("firebase-auth/setup-ui.js").then((m) => {
+            m.setupListeners(); 
+        });        
     </script>
 
     <link href="static/css/boardStyles.css" rel="stylesheet" />
@@ -59,12 +60,15 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign in <span class="caret"></span></a>
+                            <a id="user-signin" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign in <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <div id="firebaseui-auth-container"></div>
+                                    <div id="firebaseui-auth-container"></div> <!-- This is not perfect if an error occurs or it takes a while to log in as that is hidden -->
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a class="hidden" id="user-signout" href="#">Sign out</a>
                         </li>
                     </ul>
                 </div>
