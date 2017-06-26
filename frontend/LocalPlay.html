@@ -24,8 +24,8 @@
 
     <script>
         SystemJS.import("firebase-auth/setup-ui.js").then((m) => {
-            m.setupListeners(); 
-        });        
+            m.setupListeners();
+        });
     </script>
 
     <link href="static/css/boardStyles.css" rel="stylesheet" />
@@ -51,10 +51,9 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">About</a></li>
-                        <!--   <a class="menu-item" href="MyGames.html">My games</a> -->
                         <li class="active"><a href="LocalPlay.html">Local play</a></li>
-                        <!--   <a class="menu-item" href="OnlinePlay.html">Online play</a>
-            <a class="menu-item" href="Scoreboard.html">Scoreboard</a>
+                        <li><a href="OnlinePlay.html">Online play</a></li>
+                        <!-- <a class="menu-item" href="Scoreboard.html">Scoreboard</a>
             <a class="menu-item" href="Settings.html">Settings</a> -->
 
                     </ul>
@@ -63,7 +62,8 @@
                             <a id="user-signin" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign in <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <div id="firebaseui-auth-container"></div> <!-- This is not perfect if an error occurs or it takes a while to log in as that is hidden -->
+                                    <div id="firebaseui-auth-container"></div>
+                                    <!-- This is not perfect if an error occurs or it takes a while to log in as that is hidden -->
                                 </li>
                             </ul>
                         </li>
@@ -146,21 +146,22 @@
             <button id="resetButton">New game</button>
 
         </div>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js" integrity="sha256-Aoj16fina1TqHL4PHoZ7swSL79hpfmgRSild8mste+U="
-            crossorigin="anonymous"></script>
-        <script type="text/javascript" src="system.conf.js">
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js" integrity="sha256-Aoj16fina1TqHL4PHoZ7swSL79hpfmgRSild8mste+U="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="system.conf.js">
 
-        </script>
-        <script>
-            SystemJS.import('board.js');
-        </script>
+    </script>
+    <script>
+        SystemJS.import('board.js');
+    </script>
 
-        <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!-- TODO add integrity check here -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- TODO add integrity check here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 
