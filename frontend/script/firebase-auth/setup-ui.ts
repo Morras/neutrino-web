@@ -24,7 +24,6 @@ function setLoginWidget() {
 
 function setLogoutLink() {
     document.getElementById("user-signout").addEventListener("click", () => {
-        console.log("signing out");
         firebase.auth().signOut();
         setLoginWidget();
     });
@@ -44,7 +43,6 @@ function userAuthListener() {
     config.initialize();
 
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
-        console.log("auth state change")
         if (user) {
             toggleUserSigninSignoutLink(true);
             User.setCurrentUser(user);
