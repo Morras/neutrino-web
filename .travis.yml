@@ -4,7 +4,6 @@ branches:
   - master
   - travis
 before_install:
-- cd frontend
 - npm install
 - npm install -g typescript
 install:
