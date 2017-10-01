@@ -1,0 +1,177 @@
+# Template for setting up a static website using S3, cloudfront and Route53.
+# Before you can do this you need to have ssl certs in EU East (N. Virginia), 
+# the template cannot create the SSL certs it self as they must reside in that region
+# to be used by cloud front.
+# Also you must have a hosted zone in the region with the prod domain name followed by .
+# so if your prod domain is example.com then you must have a hosted region called example.com.
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  Stage:
+    Description: Stage to deploy, either test or prod
+    Type: String
+    AllowedValues:
+    - test
+    - prod
+Conditions:
+  isProd:
+    Fn::Equals:
+    - Ref: Stage
+    - prod
+Mappings:
+  Config:
+    RootDomain:
+      test: test.neutrino.tildeslash.dk
+      prod: neutrino.tildeslash.dk
+    SslCert:
+      test: arn:aws:acm:us-east-1:843366340661:certificate/f2864107-2aa6-4406-a668-c62c115ce99d
+      prod: arn:aws:acm:us-east-1:843366340661:certificate/b373e426-2dcf-4bd2-b9e0-6e1e94b7ac7f
+Resources:
+  websiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::FindInMap:
+        - Config
+        - RootDomain
+        - Ref: Stage
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+  bucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      PolicyDocument:
+        Id: websiteBucketPolicy
+        Version: '2012-10-17'
+        Statement:
+        - Sid: PublicReadForGetBucketObjects
+          Effect: Allow
+          Principal: "*"
+          Action: s3:GetObject
+          Resource:
+            Fn::Join:
+            - ''
+            - - 'arn:aws:s3:::'
+              - Ref: websiteBucket
+              - "/*"
+      Bucket:
+        Ref: websiteBucket
+  cloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+        - DomainName:
+            Fn::GetAtt:
+            - websiteBucket
+            - DomainName
+          Id:
+            Ref: websiteBucket
+          S3OriginConfig: {}
+        Aliases:
+        - Fn::FindInMap:
+          - Config
+          - RootDomain
+          - Ref: Stage
+        - Fn::Join:
+          - "."
+          - - www
+            - Fn::FindInMap:
+              - Config
+              - RootDomain
+              - Ref: Stage
+        Enabled: 'true'
+        HttpVersion: http2
+        DefaultRootObject: index.html
+        ViewerCertificate:
+          AcmCertificateArn:
+            Fn::FindInMap:
+            - Config
+            - SslCert
+            - Ref: Stage
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1
+        DefaultCacheBehavior:
+          Compress: 'true'
+          AllowedMethods:
+          - GET
+          - HEAD
+          TargetOriginId:
+            Fn::FindInMap:
+            - Config
+            - RootDomain
+            - Ref: Stage
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: allow-all
+        PriceClass: PriceClass_100
+  dns:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName:
+        Fn::Join:
+        - ''
+        - - Fn::FindInMap:
+            - Config
+            - RootDomain
+            - prod
+          - "."
+      RecordSets:
+      - Name:
+          Fn::FindInMap:
+          - Config
+          - RootDomain
+          - Ref: Stage
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName:
+            Fn::GetAtt:
+            - cloudFrontDistribution
+            - DomainName
+      - Name:
+          Fn::FindInMap:
+          - Config
+          - RootDomain
+          - Ref: Stage
+        Type: AAAA
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName:
+            Fn::GetAtt:
+            - cloudFrontDistribution
+            - DomainName
+      - Name:
+          Fn::Join:
+          - ''
+          - - www.
+            - Fn::FindInMap:
+              - Config
+              - RootDomain
+              - Ref: Stage
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName:
+            Fn::GetAtt:
+            - cloudFrontDistribution
+            - DomainName
+      - Name:
+          Fn::Join:
+          - ''
+          - - www.
+            - Fn::FindInMap:
+              - Config
+              - RootDomain
+              - Ref: Stage
+        Type: AAAA
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName:
+            Fn::GetAtt:
+            - cloudFrontDistribution
+            - DomainName
